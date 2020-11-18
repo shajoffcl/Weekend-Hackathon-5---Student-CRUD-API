@@ -5,7 +5,7 @@ const Joi=require("joi");
 const port = 8080
 app.use(express.urlencoded());
 
-const studentData=require("./InitialData");
+const studentData=require("./InitialData.js");
 
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
@@ -23,7 +23,7 @@ app.get('/api/student/:id', (req, res)=>{
     const id=req.params.id;
     const student=studentData.find((student)=>student.id===parseInt(id));
     if(!student){
-        res.sendStatus(404);
+        res.status(404).send();
         return;
     }
     res.send(student);
